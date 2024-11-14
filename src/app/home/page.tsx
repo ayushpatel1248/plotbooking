@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import homeImg from "../images /home.jpg";
+import homeImg from "../images/home.jpg";
 import Link from "next/link";
 import {
   CloudArrowUpIcon,
