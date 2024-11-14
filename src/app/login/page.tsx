@@ -30,7 +30,7 @@ const Login = () => {
       if (!error) {
         console.log("inside if condition");
         console.log(data);
-        router.push("/authenticated");
+        router.push("/home");
       }
       if (error) {
         console.log(error);

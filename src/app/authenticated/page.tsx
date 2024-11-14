@@ -12,7 +12,7 @@ const Authenticated = () => {
         console.log("Error during logout:", error.message);
       } else {
         console.log("Logged out successfully");
-        router.push("/about")
+        router.push("/login")
       }
     } catch (err) {
       console.log("Unexpected error:", err);
