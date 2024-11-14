@@ -18,6 +18,6 @@ export async function middleware(req: NextRequest) {
 
 export const config = {
   matcher: [
-    "/authenticated", "/home"
+    "/authenticated", "/home", "allplot"
   ],
 };
