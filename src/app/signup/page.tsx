@@ -16,11 +16,6 @@ import { supabase } from "@/lib/supabase";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
-import Image from "next/image";
-import fiestdark from "../images /freeats-dark.webp";
-import dashimg from "../images /dashboard-dark.webp";
-import logo from "../images /acme-logo-dark.png";
-
 
 export default function Signup() {
   const [data, setData] = useState<{
@@ -109,13 +104,13 @@ export default function Signup() {
       style={{ gridTemplateRows: "auto 1fr" }}
     >
       <div className="row-auto"></div>
-      <div className="grid grid-cols-1 lg:grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-1">
         <div className="flex flex-col items-center justify-center h-screen text-center space-y-8">
           <div className="min-w-48 h-full max-w-lg mx-auto text-left grid items-center overflow-auto">
             <div className="space-y-8">
               <div className="flex flex-col items-start gap-0 w-[320px]">
                 <h1 className="text-xl font-bold">
-                  SignUP to Everything Talent
+                  SignUP to plot booking
                 </h1>
                 <p className="text-base font-medium">
                   create new account
@@ -176,101 +171,6 @@ export default function Signup() {
           </div>
         </div>
 
-        <div className="relative p-3 hidden lg:block">
-          <div className="gap-10 bg-cover flex flex-col justify-between rounded-xl w-full dark:bg-gray-800 bg-gray-100 bg-opacity-90 h-full px-10 pt-10 pb-10">
-            <div className="ml-6 space-y-10">
-              <div className="relative flex items-center space-x-10 gap-5">
-                <Image
-                  alt="Logo Login"
-                  loading="lazy"
-                  width="40"
-                  height="40"
-                  decoding="async"
-                  className="w-[64px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-                  src={logo}
-                  style={{ color: "transparent" }}
-                />
-                <Image
-                  alt="Logo Login"
-                  loading="lazy"
-                  width="40"
-                  height="40"
-                  decoding="async"
-                  className="w-[64px] absolute rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-                  src={logo}
-                  style={{ color: "transparent" }}
-                />
-                <p className="text-2xl font-bold leading-none">
-                  Everything Talent
-                </p>
-              </div>
-
-              <div className="relative">
-                <div className="dark:hidden mb-8 relative">
-                  <Image
-                    alt="Login Header Light"
-                    loading="lazy"
-                    width="1351"
-                    height="606"
-                    decoding="async"
-                    className="relative z-0 border border-black object-cover object-left rounded-lg w-[32rem] h-[24rem]"
-                    src={dashimg}
-                    style={{ color: "transparent" }}
-                  />
-                  <Image
-                    alt="Login Header Light Overlay"
-                    loading="lazy"
-                    width="1192"
-                    height="598"
-                    decoding="async"
-                    className="z-10 border border-black object-cover object-left absolute top-[4rem] left-[20rem] h-[16rem] w-[18rem] rounded-lg"
-                    src={fiestdark}
-                    style={{ color: "transparent" }}
-                  />
-                </div>
-
-                <div className="hidden dark:block mb-8 relative">
-                  <Image
-                    alt="Login Header Dark"
-                    loading="lazy"
-                    width="1343"
-                    height="600"
-                    decoding="async"
-                    className="relative z-0 border border-aliceblue object-cover object-left rounded-lg w-[32rem] h-[24rem]"
-                    src={dashimg}
-                    style={{ color: "transparent" }}
-                  />
-                  <Image
-                    alt="Login Header Dark Overlay"
-                    loading="lazy"
-                    width="1191"
-                    height="591"
-                    decoding="async"
-                    className="z-10 border border-aliceblue object-cover object-left absolute top-[4rem] left-[20rem] h-[16rem] w-[18rem] rounded-lg"
-                    src={fiestdark}
-                    style={{ color: "transparent" }}
-                  />
-                </div>
-              </div>
-
-              <div className="xl:w-[640px]">
-                <h4 className="mt-8 scroll-m-20 text-xl font-semibold tracking-tight">
-                  Everything Talent revolutionized our hiring at TechStaff
-                  Solutions. Swiftly identifies top talent, streamlines
-                  operations, and enables data-driven decisions. Essential to
-                  our recruitment strategy, consistently delivers top-tier
-                  talent.
-                </h4>
-                <p className="mt-8 text-base font-medium dark:text-gray-100">
-                  Narendra Patel - CEO of TechStaff
-                </p>
-                <div className="mt-2 flex justify-start">
-                  <p className="leading-7">⭐️ ⭐️ ⭐️ ⭐️ ⭐️</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <Toaster />
     </div>
