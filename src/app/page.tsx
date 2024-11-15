@@ -15,6 +15,6 @@ export default function Home() {
   setNewView();
 
   return (
-          <Login/>
+      <Login/>
   );
 }
