@@ -1,15 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -27,15 +19,14 @@ export default function Signup() {
   });
   const [isLoading, setIsLoading] = useState(false)
 
-  const { setTheme } = useTheme();
   const router = useRouter();
   const { toast } = useToast();
 
-  const signup = async (e : React.FormEvent) => {
+  const signup = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-        setIsLoading(true);
+      setIsLoading(true);
       const { data: dataUser, error } = await supabase.auth.signUp({
         email: data.email,
         password: data.password,
@@ -44,7 +35,7 @@ export default function Signup() {
       if (!error) {
         console.log("inside if condition");
         console.log(data);
-        router.push("/authenticated");
+        router.push("/allplot");
       }
       if (error) {
         console.log(error);
@@ -64,8 +55,8 @@ export default function Signup() {
         action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
     }
-    finally{
-        setIsLoading(false);
+    finally {
+      setIsLoading(false);
     }
   };
 
@@ -79,101 +70,82 @@ export default function Signup() {
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200 dark:bg-gray-900">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon" className="dark:bg-slate-400">
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 " />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setTheme("light")}>
-            Light
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("dark")}>
-            Dark
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("system")}>
-            System
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      
       <div
-      className="grid h-full dark:bg-gray-900/20"
-      style={{ gridTemplateRows: "auto 1fr" }}
-    >
-      <div className="row-auto"></div>
-      <div className="grid grid-cols-1 lg:grid-cols-1">
-        <div className="flex flex-col items-center justify-center h-screen text-center space-y-8">
-          <div className="min-w-48 h-full max-w-lg mx-auto text-left grid items-center overflow-auto">
-            <div className="space-y-8">
-              <div className="flex flex-col items-start gap-0 w-[320px]">
-                <h1 className="text-xl font-bold">
-                  SignUP to plot booking
-                </h1>
-                <p className="text-base font-medium">
-                  create new account
-                </p>
-              </div>
+        className="grid h-full dark:bg-gray-900/20"
+        style={{ gridTemplateRows: "auto 1fr" }}
+      >
+        <div className="row-auto"></div>
+        <div className="grid grid-cols-1 lg:grid-cols-1">
+          <div className="flex flex-col items-center justify-center h-screen text-center space-y-8">
+            <div className="min-w-48 h-full max-w-lg mx-auto text-left grid items-center overflow-auto">
+              <div className="space-y-8">
+                <div className="flex flex-col items-start gap-0 w-[320px]">
+                  <h1 className="text-xl font-bold">
+                    SignUP to plot booking
+                  </h1>
+                  <p className="text-base font-medium">
+                    create new account
+                  </p>
+                </div>
 
-              <hr />
+                <hr />
 
-              <form onSubmit={signup} className="space-y-4" >
-                <label
-                  htmlFor="password-email"
-                  className="text-sm font-medium text-muted-foreground"
-                >
-                  Email address
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  onChange={handleChange}
-                  placeholder="Type your email"
-                  className="block w-full rounded-md border bg-gray-50 dark:bg-gray-800/20 h-10 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-
-                <label
-                  htmlFor="password"
-                  className="text-sm font-medium text-muted-foreground"
-                >
-                  Password
-                </label>
-                <div className="relative">
+                <form onSubmit={signup} className="space-y-4" >
+                  <label
+                    htmlFor="password-email"
+                    className="text-sm font-medium text-muted-foreground"
+                  >
+                    Email address
+                  </label>
                   <input
-                    id="password"
-                    name="password"
-                    type="password"
+                    id="email"
+                    name="email"
+                    type="email"
                     onChange={handleChange}
-                    placeholder="Type your password"
+                    placeholder="Type your email"
                     className="block w-full rounded-md border bg-gray-50 dark:bg-gray-800/20 h-10 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
-                </div>
 
-                <div className="flex justify-between text-sm">
-                  <Link
-                    href="/login"
-                    className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500"
+                  <label
+                    htmlFor="password"
+                    className="text-sm font-medium text-muted-foreground"
                   >
-                    Sign In instead?
-                  </Link>
-                </div>
+                    Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      id="password"
+                      name="password"
+                      type="password"
+                      onChange={handleChange}
+                      placeholder="Type your password"
+                      className="block w-full rounded-md border bg-gray-50 dark:bg-gray-800/20 h-10 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
 
-                <button
-                  className="bg-gradient-to-b from-blue-500 to-blue-600 text-white h-10 w-full rounded-md transition hover:shadow-xl"
-                >
-                  SignUp
-                </button>
-              </form>
+                  <div className="flex justify-between text-sm">
+                    <Link
+                      href="/login"
+                      className="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500"
+                    >
+                      Sign In instead?
+                    </Link>
+                  </div>
+
+                  <button
+                    className="bg-gradient-to-b from-blue-500 to-blue-600 text-white h-10 w-full rounded-md transition hover:shadow-xl"
+                  >
+                    SignUp
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
+        <Toaster />
       </div>
-      <Toaster />
-    </div>
       <Toaster />
     </div>
   );
