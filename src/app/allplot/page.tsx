@@ -173,19 +173,19 @@ const page = () => {
     const [data, setData] = useState([]);
 
  
-    const signout = async () => {
-        try {
-            const { error } = await supabase.auth.signOut();
-            if (error) {
-                console.log("Error during logout:", error.message);
-            } else {
-                console.log("Logged out successfully");
-                router.push("/login")
-            }
-        } catch (err) {
-            console.log("Unexpected error:", err);
-        }
-    }
+    // const signout = async () => {
+    //     try {
+    //         const { error } = await supabase.auth.signOut();
+    //         if (error) {
+    //             console.log("Error during logout:", error.message);
+    //         } else {
+    //             console.log("Logged out successfully");
+    //             router.push("/login")
+    //         }
+    //     } catch (err) {
+    //         console.log("Unexpected error:", err);
+    //     }
+    // }
 
     useEffect(()=>{
        const fun = async()=>{
@@ -288,7 +288,7 @@ const page = () => {
                             >
                                 Log in
                             </a>
-                            <button onClick={signout}>logout</button>
+                            {/* <button onClick={signout}>logout</button> */}
                             <button
                                 data-collapse-toggle="mobile-menu-2"
                                 type="button"
