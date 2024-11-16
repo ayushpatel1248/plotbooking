@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation"
-import { supabase } from "@/lib/supabase"
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -13,7 +12,8 @@ import {
 import {Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from 'next/link';
-import data from "../../data.json"
+// import data from "../../data.json"
+import { createClient } from "@/utils/supabase/client";
 
 const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsI_y7p2XbMoRy4hN-BjiiKyYu85Zc0Xz-xoLIE85iHFSqBBBbbQOKopou4ZzJwMfkmIc&usqp=CAU",
     "https://housing-images.n7net.in/4f2250e8/789bc2e4fcb9659bd0a98a8064f0709b/v0/fs/wave_city_residential_plots-wave_city-ghaziabad-wave_group.jpeg",
@@ -129,6 +129,10 @@ const PropertyCard = ({
                     <div className={`${status=="available"?"":"pointer-events-none"}`}>
                         <Link
                         href="/bookPlot"
+                        onClick={((e)=>{
+                            e.preventDefault()
+                            alert("plot booked")
+                        })}
                         className={`inline-flex items-center px-3 py-2 text-sm font-medium text-center
                           rounded-lg   
                           ${status=="available"?"bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 text-white dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 bg-blue-700":"bg-slate-700  text-slate-100 "}`}
@@ -157,16 +161,16 @@ const PropertyCard = ({
 };
 const page = () => {
     const { setTheme } = useTheme();
-    // let [user , setUser] = useState("")
     const [states, setStates] = useState([]);
     const [districts, setDistricts] = useState([]);
     const [colonies, setColonies] = useState([]);
     const [selectedState, setSelectedState] = useState('');
     const [selectedDistrict, setSelectedDistrict] = useState('');
     const [selectedColony, setSelectedColony] = useState('')
-
+    const [email, setEmail] = useState(null);
     const router = useRouter();
-    // const [data, setData] = useState([]);
+    const supabase = createClient();
+    const [data, setData] = useState([]);
 
  
     const signout = async () => {
@@ -183,6 +187,35 @@ const page = () => {
         }
     }
 
+    useEffect(()=>{
+       const fun = async()=>{
+        const user = await supabase.auth.getUser(); // Get current logged-in user
+        if (user) {
+            console.log("user",user)
+          setEmail(user.email); // Set the email from the user object
+        } else {
+          console.log('No user is logged in');
+        }
+       }
+       fun()
+      }, []);
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const { data: tableData, error } = await supabase.from("allplot").select("*");
+            if (error) {
+              console.error("Error fetching data:", error);
+            } else {
+              console.log("Fetched data:", tableData);
+              setData(tableData);
+            }
+          } catch (err) {
+            console.error("Unexpected error:", err);
+          }
+        };
+    
+        fetchData();
+      }, [supabase]);
     useEffect(() => {
         setStates((prev) => {
             const uniqueStates = new Set(data.map((el) => el.state));
@@ -379,6 +412,7 @@ const page = () => {
                 </div>
             </div>
             <div className='mx-20'>
+                <div>{email}</div>
             {selectedState&&selectedDistrict&&selectedColony?
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">      
                     {data.map((el) => {
