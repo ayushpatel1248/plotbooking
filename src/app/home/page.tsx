@@ -1,6 +1,5 @@
 import Image from "next/image";
 import React from "react";
-import homeImg from "../images/home";
 import Link from "next/link";
 import {
   CloudArrowUpIcon,
@@ -144,7 +143,7 @@ const Home = () => {
             </Link>
           </div>
           <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-            <Image src={homeImg} alt="mockup" />
+            {/* <Image src={homeImg} alt="mockup" /> */}
           </div>
         </div>
       </section>
