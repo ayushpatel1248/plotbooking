@@ -13,34 +13,7 @@ import {
 import {Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from 'next/link';
-const states = [
-    { name: "Maharashtra", districts: ["Pune", "Mumbai", "Nagpur", "Nashik", "Aurangabad", "Kolhapur", "Thane", "Satara", "Solapur", "Sangli"] },
-    { name: "Uttar Pradesh", districts: ["Lucknow", "Kanpur", "Varanasi", "Agra", "Ghaziabad", "Meerut", "Noida", "Bareilly", "Aligarh", "Prayagraj"] },
-    { name: "Gujarat", districts: ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Jamnagar", "Gandhinagar", "Junagadh", "Anand", "Navsari"] },
-    { name: "Rajasthan", districts: ["Jaipur", "Jodhpur", "Udaipur", "Kota", "Ajmer", "Bikaner", "Alwar", "Bhilwara", "Sikar", "Pali"] },
-    { name: "Tamil Nadu", districts: ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Tirunelveli", "Erode", "Vellore", "Thoothukudi", "Tiruppur"] },
-    { name: "Karnataka", districts: ["Bengaluru", "Mysuru", "Mangaluru", "Hubli-Dharwad", "Belgaum", "Gulbarga", "Davangere", "Shivamogga", "Udupi", "Tumakuru"] },
-    { name: "West Bengal", districts: ["Kolkata", "Howrah", "Darjeeling", "Asansol", "Siliguri", "Durgapur", "Bardhaman", "Malda", "Nadia", "Murshidabad"] },
-    { name: "Madhya Pradesh", districts: ["Bhopal", "Indore", "Gwalior", "Jabalpur", "Ujjain", "Sagar", "Satna", "Ratlam", "Rewa", "Dewas"] },
-    { name: "Bihar", districts: ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Purnia", "Darbhanga", "Bihar Sharif", "Arrah", "Begusarai", "Katihar"] },
-    { name: "Punjab", districts: ["Amritsar", "Ludhiana", "Jalandhar", "Patiala", "Bathinda", "Mohali", "Hoshiarpur", "Pathankot", "Moga", "Ferozepur"] },
-    { name: "Haryana", districts: ["Gurgaon", "Faridabad", "Panipat", "Ambala", "Hisar", "Karnal", "Sonipat", "Rohtak", "Yamunanagar", "Panchkula"] },
-    { name: "Kerala", districts: ["Thiruvananthapuram", "Kochi", "Kozhikode", "Thrissur", "Kannur", "Kollam", "Alappuzha", "Palakkad", "Kottayam", "Malappuram"] },
-    { name: "Odisha", districts: ["Bhubaneswar", "Cuttack", "Rourkela", "Sambalpur", "Puri", "Balasore", "Berhampur", "Kendujhar", "Jharsuguda", "Angul"] },
-    { name: "Assam", districts: ["Guwahati", "Dibrugarh", "Silchar", "Jorhat", "Tezpur", "Nagaon", "Tinsukia", "Goalpara", "Sivasagar", "Dhemaji"] },
-    { name: "Jharkhand", districts: ["Ranchi", "Jamshedpur", "Dhanbad", "Bokaro", "Deoghar", "Hazaribagh", "Giridih", "Ramgarh", "Palamu", "Dumka"] },
-    { name: "Chhattisgarh", districts: ["Raipur", "Bilaspur", "Durg", "Korba", "Rajnandgaon", "Jagdalpur", "Ambikapur", "Raigarh", "Mahasamund", "Koriya"] },
-    { name: "Uttarakhand", districts: ["Dehradun", "Haridwar", "Nainital", "Rishikesh", "Almora", "Pithoragarh", "Haldwani", "Rudrapur", "Kashipur", "Mussoorie"] },
-    { name: "Himachal Pradesh", districts: ["Shimla", "Manali", "Dharamshala", "Mandi", "Solan", "Kullu", "Una", "Bilaspur", "Chamba", "Kangra"] },
-    { name: "Telangana", districts: ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Khammam", "Mahbubnagar", "Nalgonda", "Adilabad", "Medak", "Siddipet"] },
-    { name: "Andhra Pradesh", districts: ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Kurnool", "Tirupati", "Rajahmundry", "Kadapa", "Anantapur", "Eluru"] }
-];
-
-
-const colonies = [
-    "Shivaji Nagar", "Gokul Colony", "Raja Park", "Krishna Nagar", "Green Valley",
-    "Sunrise Enclave", "Pearl Residency", "Elite Garden", "Silver Oak", "Maple Heights","bajrangbali nagar"
-];
+import data from "../../data.json"
 
 const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsI_y7p2XbMoRy4hN-BjiiKyYu85Zc0Xz-xoLIE85iHFSqBBBbbQOKopou4ZzJwMfkmIc&usqp=CAU",
     "https://housing-images.n7net.in/4f2250e8/789bc2e4fcb9659bd0a98a8064f0709b/v0/fs/wave_city_residential_plots-wave_city-ghaziabad-wave_group.jpeg",
@@ -53,42 +26,7 @@ const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsI_y7p2X
     "https://is1-2.housingcdn.com/01c16c28/90ec0fc8018f87d0b7e96b9ce4529910/v0/fs/4_bhk_villa-for-rent-nanakram_guda-Hyderabad-others.jpg",
     "https://is1-2.housingcdn.com/01c16c28/90ec0fc8018f87d0b7e96b9ce4529910/v0/fs/4_bhk_villa-for-rent-nanakram_guda-Hyderabad-others.jpg"
 ]
-// Initialize plots array,
 
-let data = [];
-
-// Function to generate plot data
-function generatePlots() {
-    let plotId = 1;
-    states.forEach(state => {
-        state.districts.forEach(district => {
-            colonies.forEach(colony => {
-                // Ensure at least 10 plots are generated per colony
-                const minPlots = 10;
-                const numPlots = Math.max(minPlots, Math.floor(Math.random() * 10 + 5)); // At least 10 plots, random between 10 and 15
-
-                for (let i = 0; i < numPlots; i++) {
-                    const plot = {
-                        plotId: plotId++,
-                        state: state.name,
-                        district: district,
-                        colony: colony,
-                        size: `${Math.floor(Math.random() * 2000 + 500)} sq ft`, // Random size between 500 and 2500 sq ft
-                        status: Math.random() > 0.5 ? "available" : "booked",
-                        type: Math.random() > 0.5 ? "sell" : "rent",
-                        price: Math.random() > 0.5 ? Math.floor(Math.random() * 500000 + 100000) : Math.floor(Math.random() * 20000 + 5000), // Random price
-                        bookedBy: Math.random() > 0.7 ? `${Math.random().toString(36).substring(2, 7)}@example.com` : null, // Random email or null
-                        owner: `Owner ${plotId}`, // Example owner name
-                        address: `${Math.floor(Math.random() * 1000 + 1)}, ${colony}, ${district}, ${state.name}`
-                    };
-                    data.push(plot);
-                }
-            });
-        });
-    });
-}
-
-generatePlots();
 const CurrencyRupee = ({ size = 24 }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -136,13 +74,14 @@ const PropertyCard = ({
     state,
     district,
     colony,
-    size,
     status,
     type,
     price,
     bookedBy,
     owner,
     address,
+    dimension,
+    direction
 }) => {
     return (
         <div className="bg-slate-800 text-white dark:text-black border border-gray-200 rounded-lg shadow dark:bg-slate-100 dark:border-gray-700 overflow-hidden">
@@ -160,10 +99,13 @@ const PropertyCard = ({
                     <span>{address}</span>
                 </div>
                 <div className="mb-2">
-                    <span className="font-medium">Plot ID:</span> {plotId}
+                    <span className="font-medium">Aera NO:</span> {plotId}
                 </div>
                 <div className="mb-2">
-                    <span className="font-medium">Size:</span> {size}
+                    <span className="font-medium">dimension:</span> {dimension}
+                </div>
+                <div className="mb-2">
+                    <span className="font-medium">direction:</span> {direction}
                 </div>
                 <div className="mb-2">
                     <span className="font-medium">Status:</span> {status}
@@ -224,6 +166,9 @@ const page = () => {
     const [selectedColony, setSelectedColony] = useState('')
 
     const router = useRouter();
+    // const [data, setData] = useState([]);
+
+ 
     const signout = async () => {
         try {
             const { error } = await supabase.auth.signOut();
@@ -243,22 +188,8 @@ const page = () => {
             const uniqueStates = new Set(data.map((el) => el.state));
             return Array.from(uniqueStates);
         });
-    }, []);
+    }, [data]);
 
-    // useEffect(() => {
-    //     const session = supabase.auth.session();
-    //     setUser(session?.user ?? null);
-
-    //     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
-    //       setUser(session?.user ?? null);
-    //     });
-
-    //     return () => {
-    //       authListener?.unsubscribe();
-    //     };
-    //   }, []);
-
-    // Handle state selection
     const handleStateChange = (event) => {
         const selected = event.target.value;
         setSelectedState(selected);
@@ -455,10 +386,11 @@ const page = () => {
                             key={el.plotId}
                             imageUrl={`/api/placeholder/400/240?id=${el.plotId}`}
                             plotId={el.plotId}
+                            direction = {el.direction}
                             state={el.state}
                             district={el.district}
                             colony={el.colony}
-                            size={el.size}
+                            dimension={el.dimension}
                             status={el.status}
                             type={el.type}
                             price={el.price}
