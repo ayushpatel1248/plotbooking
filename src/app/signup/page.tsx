@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/utils/supabase/client";
 import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
@@ -18,6 +18,7 @@ export default function Signup() {
     password: "",
   });
   const [isLoading, setIsLoading] = useState(false)
+  const supabase = createClient();
 
   const router = useRouter();
   const { toast } = useToast();

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Table from "./table";
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "../../utils/supabase/client";
 
 // Function to make all plots available
 const makeAllPlotsAvailable = async () => {

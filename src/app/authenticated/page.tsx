@@ -1,8 +1,9 @@
 'use client'
 import { Button } from "@/components/ui/button"
-import { supabase } from "@/lib/supabase"
+import { createClient } from "@/utils/supabase/client";
 import {useRouter} from "next/navigation"
 const Authenticated = () => {
+  const supabase = createClient();
   const router = useRouter();
 
    const signout = async ()=>{

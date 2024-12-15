@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "../../utils/supabase/client";
 
 const Table = ({ data }) => {
   const supabase = createClient();

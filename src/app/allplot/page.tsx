@@ -13,7 +13,7 @@ import {Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from 'next/link';
 // import data from "../../data.json"
-import { createClient } from "@/utils/supabase/client";
+import { createClient } from "../../utils/supabase/client";
 
 const images = ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsI_y7p2XbMoRy4hN-BjiiKyYu85Zc0Xz-xoLIE85iHFSqBBBbbQOKopou4ZzJwMfkmIc&usqp=CAU",
     "https://housing-images.n7net.in/4f2250e8/789bc2e4fcb9659bd0a98a8064f0709b/v0/fs/wave_city_residential_plots-wave_city-ghaziabad-wave_group.jpeg",

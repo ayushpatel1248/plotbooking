@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import Login from "./login/page"
 
 export default function Home() {
+  const supabase = createClient();
+
   const setNewView = async () => {
     const { data, error } = await supabase.from("supabasetask1").select();
 

@@ -1,5 +1,5 @@
 "use client";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/utils/supabase/client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Toaster } from "@/components/ui/toaster";
@@ -16,6 +16,7 @@ const Login = () => {
     password: "",
   });
 
+  const supabase = createClient();
   const { toast } = useToast();
   const router = useRouter();
 
